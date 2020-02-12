@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dungeon Dice Monsters</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game">
+
+        <div id="p1ui" class="player">
+
+            <div class="dices hide" id="dicesP1">
+                <button onclick="rollDice('player1', 1)">
+                    <img src="dice/summon.png" alt="">
+                </button>
+                <button onclick="rollDice('player1', 2)">
+                    <img src="dice/summon.png" alt="">
+                </button>
+                <button onclick="rollDice('player1', 3)">
+                    <img src="dice/summon.png" alt="">
+                </button>
+                <button onclick="rollDice('player1', 4)">
+                    <img src="dice/summon.png" alt="">
+                </button>
+
+            </div><!--end of dices-->
+
+            <div id="resultP1" class="results hide">
+                <div class="resultOut">
+                <img id="p1d1" src="dice/summon.png" alt="">
+                <img id="p1d2" src="dice/summon.png" alt="">
+                <img id="p1d3" src="dice/summon.png" alt=""> </br>
+                <button onclick="hideResults('player1')">OK</button> 
+            </div>  
+            </div><!--end of reults-->
+
+            <div class="life">
+
+                <p id="lifeP1">Life: 3</p>
+                <button onclick="lifeCounter('player1', 1)">Add</button>
+                <button onclick="lifeCounter('player1', -1)">Remove</button>
+
+            </div><!--end of life-->
+
+            <div class="crests">
+
+                <div class="crest">
+                    <img src="dice/attack.png" alt="Attack: ">
+                    <p id="aP1">0</p>
+                </div><!--end of crest-->
+
+                <div class="crest">
+                    <img src="dice/defense.png" alt="Defense: ">
+                    <p id="dP1">0</p>
+                </div><!--end of crest-->
+
+                <div class="crest">
+                    <img src="dice/trap.png" alt="Trap:">
+                    <p id="tP1">0</p>
+                </div><!--end of crest-->
+
+                <div class="crest">
+                    <img src="dice/spell.png" alt="Spell:">
+                    <p id="sP1">0</p>
+                </div><!--end of crest-->
+
+                <div class="crest">
+                    <img src="dice/movement.png" alt="Movement:">
+                    <p id="mP1">0</p>
+
+                </div><!--end of crest-->
+
+            </div><!--end of crests-->
+
+            <div class="buttons">
+                <button onclick="showDeck('player1')">Show Deck</button>
+                <button onclick="endTurn('player1')">End Turn</button>
+            </div><!--end of buttons-->
+
+            <div id="deckP1" class="deck hide">
+                <div class="card cp1" onclick="pickedCard('player1', 0)"></div>
+                <div class="card cp1" onclick="pickedCard('player1', 1)"></div>
+                <div class="card cp1" onclick="pickedCard('player1', 2)"></div>
+                <div class="card cp1" onclick="pickedCard('player1', 3)"></div>
+                <div class="card cp1" onclick="pickedCard('player1', 4)"></div>
+                <div class="card cp1" onclick="pickedCard('player1', 5)"></div>
+                <div class="card cp1" onclick="pickedCard('player1', 6)"></div>
+                <div class="card cp1" onclick="pickedCard('player1', 7)"></div>
+                <div class="card cp1" onclick="pickedCard('player1', 8)"></div>
+                <div class="card cp1" onclick="pickedCard('player1', 9)"></div>
+                <div class="card cp1" onclick="pickedCard('player1', 10)"></div>
+                <div class="card cp1" onclick="pickedCard('player1', 11)"></div>
+                <div class="card cp1" onclick="pickedCard('player1', 12)"></div>
+                <div class="card cp1" onclick="pickedCard('player1', 13)"></div>
+                <div class="card cp1" onclick="pickedCard('player1', 14)"></div>
+            </div><!--end of deckP1-->
+
+        </div><!--end of player-->
+
+        <div class="mat" id="mat" oncontextmenu="fieldOrientation()">
+            <div class="row">
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field field-activeP1" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+            </div><!--end of row-->
+            <div class="row">
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+            </div><!--end of row-->
+            <div class="row">
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+            </div><!--end of row-->
+            <div class="row">
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+            </div><!--end of row-->
+            <div class="row">
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+            </div><!--end of row-->
+            <div class="row">
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+            </div><!--end of row-->
+            <div class="row">
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+            </div><!--end of row-->
+            <div class="row">
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+            </div><!--end of row-->
+            <div class="row">
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+            </div><!--end of row-->
+            <div class="row">
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+            </div><!--end of row-->
+            <div class="row">
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+            </div><!--end of row-->
+            <div class="row">
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+            </div><!--end of row-->
+            <div class="row">
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+            </div><!--end of row-->
+            <div class="row">
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+            </div><!--end of row-->
+            <div class="row">
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+            </div><!--end of row-->
+            <div class="row">
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+            </div><!--end of row-->
+            <div class="row">
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+            </div><!--end of row-->
+            <div class="row">
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+            </div><!--end of row-->
+            <div class="row">
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field field-activeP2" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+                <div class="field" onmouseover="onHover(this)", onclick="onClick(this)" onmouseout="onOut(this)"></div>
+            </div><!--end of row-->
+            
+            
+        </div><!--end of mat-->
+
+        <div id="p2ui" class="player playerInactive">
+
+            <div class="dices hide" id="dicesP2">
+                <button onclick="rollDice('player2', 1)">
+                    <img src="dice/summon.png" alt="">
+                </button>
+                <button onclick="rollDice('player2', 2)">
+                    <img src="dice/summon.png" alt="">
+                </button>
+                <button onclick="rollDice('player2', 3)">
+                    <img src="dice/summon.png" alt="">
+                </button>
+                <button onclick="rollDice('player2', 4)">
+                    <img src="dice/summon.png" alt="">
+                </button>
+
+            </div><!--end of dices-->
+
+            <div id="resultP2" class="results hide">
+                <div class="resultOut">
+                <img id="p2d1" src="dice/summon.png" alt="">
+                <img id="p2d2" src="dice/summon.png" alt="">
+                <img id="p2d3" src="dice/summon.png" alt=""> </br>
+                <button onclick="hideResults('player2')">OK</button> 
+            </div>  
+            </div><!--end of reults-->
+
+            <div class="life">
+
+                <p id="lifeP2">Life: 3</p>
+                <button onclick="lifeCounter('player2', 1)">Add</button>
+                <button onclick="lifeCounter('player2', -1)">Remove</button>
+
+            </div><!--end of life-->
+
+            <div class="crests">
+
+                <div class="crest">
+                    <img src="dice/attack.png" alt="Attack: ">
+                    <p id="aP2">0</p>
+                </div><!--end of crest-->
+
+                <div class="crest">
+                    <img src="dice/defense.png" alt="Attack: ">
+                    <p id="dP2">0</p>
+                </div><!--end of crest-->
+
+                <div class="crest">
+                    <img src="dice/trap.png" alt="Attack: ">
+                    <p id="tP2">0</p>
+                </div><!--end of crest-->
+
+                <div class="crest">
+                    <img src="dice/spell.png" alt="Attack: ">
+                    <p id="sP2">0</p>
+                </div><!--end of crest-->
+
+                <div class="crest">
+                    <img src="dice/movement.png" alt="Attack: ">
+                    <p id="mP2">0</p>
+
+                </div><!--end of crest-->
+
+            </div><!--end of crests-->
+
+            <div class="buttons">
+                <button onclick="showDeck('player2')">Show Deck</button>
+                <button onclick="endTurn('player2')">End Turn</button>
+            </div><!--end of buttons-->
+
+            <div id="deckP2" class="deck hide">
+                <div class="card cp2" onclick="pickedCard('player2', 0)"></div>
+                <div class="card cp2" onclick="pickedCard('player2', 1)"></div>
+                <div class="card cp2" onclick="pickedCard('player2', 2)"></div>
+                <div class="card cp2" onclick="pickedCard('player2', 3)"></div>
+                <div class="card cp2" onclick="pickedCard('player2', 4)"></div>
+                <div class="card cp2" onclick="pickedCard('player2', 5)"></div>
+                <div class="card cp2" onclick="pickedCard('player2', 6)"></div>
+                <div class="card cp2" onclick="pickedCard('player2', 7)"></div>
+                <div class="card cp2" onclick="pickedCard('player2', 8)"></div>
+                <div class="card cp2" onclick="pickedCard('player2', 9)"></div>
+                <div class="card cp2" onclick="pickedCard('player2', 10)"></div>
+                <div class="card cp2" onclick="pickedCard('player2', 11)"></div>
+                <div class="card cp2" onclick="pickedCard('player2', 12)"></div>
+                <div class="card cp2" onclick="pickedCard('player2', 13)"></div>
+                <div class="card cp2" onclick="pickedCard('player2', 14)"></div>
+            </div><!--end of deckP1-->
+
+        </div><!--end of player-->
+
+        
+
+    </div><!--end of game-->
+    
+</body>
+<script src="js/cards.js"></script>
+<script src="js/functions.js"></script>
+<script src="js/main.js"></script>
+<script src="js/player1.js"></script>
+<script src="js/player2.js"></script>
+<script src="js/fieldHandler.js"></script>
+</html>

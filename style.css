@@ -1,0 +1,202 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+img{
+    border: none;
+}
+.game{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: #fdd365
+}
+.mat{
+    display: flex;
+    flex-direction: row;
+    border: 5px solid rgba(194, 129, 10, 0.699);
+    box-shadow: black 5px 5px 5px;
+    margin: 0 25px;
+}
+.player{
+    border: 1px solid black;
+    margin: 15px;
+    padding: 15px;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-shadow: black 1px 1px 1px; 
+    box-shadow: black 5px 5px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.crest{
+    display: flex;
+    padding: .5 1em;
+    justify-content: center;
+    align-items: center;
+}
+.crest img{
+    width: 48px;
+    padding-right: .5;
+}
+.life button{
+    display: none;
+}
+.buttons{
+    display: flex;
+    flex-direction: column;
+}
+.buttons button{
+    padding: .5em;
+    margin: .5em;
+    background-color: #8cba51;
+    border: none;
+    border-radius: 5px;
+    font-size: .7em;
+    font-weight: bold;
+    color: #4d4646;
+    transition: .5s;
+}
+.buttons button:hover{
+    opacity: .9;
+}
+#p2ui{
+    background-color: #142850; 
+    color: #00a8cc;
+}
+#p1ui{
+    background-color: #84142d; 
+    color: #f64b3c;
+}
+
+.row{
+    display: flex;
+    flex-direction: column;
+}
+.field{
+    border: 1px solid rgba(194, 129, 10, 0.699);
+    width: 56px;
+    height: 56px;
+    background-size: cover;
+    background-position: center;
+    background-image: url("tile.png");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.field img{
+    width: 100%;
+    position: center;
+}
+
+.field-hoverP1{
+    background-color: rgba(255, 0, 0, .3);
+    background-image: url("tileP1.png");
+    opacity: .7;
+}
+.field-hoverP2{
+    background-color: rgba(0, 0, 255, .3);
+    background-image: url("tileP2.png");
+    opacity: .7;
+}
+.field-activeP1{
+    background-color: red;
+    background-image: url("tileP1.png");
+}
+.field-activeP2{
+    background-color: blue;
+    background-image: url("tileP2.png");
+}
+.deck{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    background-color: black;
+    padding: 2em;
+    background-color: rgba(0, 0, 0, 0.397);
+}
+.card img{
+    width: 126px;
+}
+
+.dices{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    padding: 1em;
+    background-color: rgba(0, 0, 0, 0.397);
+}
+
+#dicesP1 button{
+    background-color: #84142d; 
+}
+
+#dicesP2 button{
+    background-color: #142850; 
+}
+.dices button {
+    padding: 1em;
+    margin: 1em;
+}
+.dices img{
+    width: 68px;
+}
+
+.results{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+}
+
+#resultP1 .resultOut{
+    background-color: #84142d; 
+}
+#resultP2 .resultOut{
+    background-color:#142850; 
+}
+.resultOut{
+    padding: 1em;
+    box-shadow: black 5px 5px 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+.resultOut button{
+    padding: .5em;
+    margin: .5em;
+    background-color: #8cba51;
+    border: none;
+    border-radius: 5px;
+    font-size: .7em;
+    font-weight: bold;
+    color: #4d4646;
+    transition: .5s;
+}
+.resultOut img{
+    width: 87px;
+    border: 1px solid black;
+    padding: .5em;
+    border-radius: 5px;
+    box-shadow: black 2px 2px 2px;
+}
+
+.hide{
+    display: none;
+}
+.playerInactive{
+    opacity: .5;
+}
